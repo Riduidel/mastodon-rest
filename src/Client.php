@@ -5,6 +5,7 @@ namespace Phediverse\MastodonRest;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
 use Phediverse\MastodonRest\Resource\Account;
+use Phediverse\MastodonRest\Resource\Status;
 use Phediverse\MastodonRest\Resource\BaseResource;
 use Phediverse\MastodonRest\Resource\Instance;
 
@@ -137,6 +138,21 @@ class Client
         $uri = 'accounts/' . ($id ?: $this->getAccountId()) . '/followers';
         $class = Account::class . "[]";
         return $this->get($uri, $class, $useCache);
+    }
+
+    public function getPublicTimeline(bool $useCache = true) : array {
+        $class = Status::class . "[]";
+        return $this->get("timelines/public", $class, $useCache);
+    }
+
+    public function getHashtagTimeline(string $hashtag, bool $useCache = true) : array {
+        $class = Status::class . "[]";
+        return $this->get("timelines/tag/".$hashtag, $class, $useCache);
+    }
+
+    public function getHomeTimeline(bool $useCache = true) : array {
+        $class = Status::class . "[]";
+        return $this->get("timelines/home", $class, $useCache);
     }
 
     /////////////////////////
