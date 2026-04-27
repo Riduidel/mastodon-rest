@@ -1,5 +1,5 @@
 {
-    "name": "phediverse/mastodon-rest",
+    "name": "riduidel/mastodon-rest",
     "type": "library",
     "description": "Mastodon API REST client",
     "require": {
